@@ -7,17 +7,26 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const InputCard = ({handleChange, handleDeleteCard, cardID}) => {
     return (
-        <Box sx={{p:2}}>
-            <Card sx={{ width: 1000 , height: 250}}>
-                <IconButton aria-label="delete" onClick={handleDeleteCard}>
-                    <DeleteOutlineIcon />
-                </IconButton>
-                <Grid container spacing={1} sx={{display: "flex", justifyContent: 'space-evenly'}}>
-                <TextField sx={{p:2 , width:950}} id="standard-basic" variant="outlined" onChange={(event) => handleChange(event, cardID, "Front")}/>
-                <TextField sx={{p:2, width:950}} id="outlined-basic" variant="outlined"  onChange={(event) => handleChange(event, cardID, "Back")} />
-                </Grid>
+            <Card>
+
+                <Box display="grid" gridTemplateColumns="repeat(12, 1fr)">
+                    <Box gridColumn="span 3" display="flex" alignItems="center" justifyContent="center"> 
+                        <h4 >Front</h4>
+                    </Box>
+                    <Box gridColumn="span 8" > 
+                        <TextField sx={{ width: "90%" }}  id="standard-basic" variant="outlined" onChange={(event) => handleChange(event, cardID, "Front")}/>
+                    </Box>
+                    <IconButton sx={{gridColumn:"span 1"}} aria-label="delete" onClick={handleDeleteCard}>
+                        <DeleteOutlineIcon />
+                    </IconButton>
+                    <Box gridColumn="span 3" display="flex" alignItems="center" justifyContent="center"> 
+                        <h4>Back</h4>
+                    </Box>
+                    <Box gridColumn="span 8" > 
+                        <TextField sx={{ width: "90%" }} id="outlined-basic" variant="outlined"  onChange={(event) => handleChange(event, cardID, "Back")} />
+                    </Box>
+                </Box>
             </Card>
-        </Box>
 
       )
 }

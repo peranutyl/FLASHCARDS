@@ -2,6 +2,7 @@ import { useState } from 'react'
 import InputCard from './InputCard'
 import AddCard from './AddCard'
 import CardService from '../service/CardService'
+import { Box } from '@mui/material'
 // Creates three empty cards bhy default
 const CreateCards = () => {
     const startcards = [
@@ -39,7 +40,7 @@ const CreateCards = () => {
 
       const createDeck = () => {
         const data = {
-          deck : {DeckName: deck},
+          deck : deck,
           cards : cards
         }
         CardService.createDeck(data).then(response => console.log(response))
@@ -48,12 +49,22 @@ const CreateCards = () => {
       
 
     return (
-        <div>
-            <input onChange={(event) => {setDeck(event.target.value)}}></input>
-            {cards.map(card => <InputCard key={card.CardID} handleChange = {handleChange} handleDeleteCard={() => handleDeleteCard(card.CardID)} cardID={card.CardID}></InputCard>)}
+      //things seem very Boxy
+        <Box display = "flex" flexDirection="column" gap ="20px">
+          <Box>
+              <input onChange={(event) => {setDeck(event.target.value)}}></input>
+          </Box>
+            {cards.map(card => 
+            <InputCard key={card.CardID} handleChange = {handleChange} handleDeleteCard={() => handleDeleteCard(card.CardID)} cardID={card.CardID}></InputCard>
+            )}
+          <Box>
             <AddCard handleAddCard={handleAddCard}></AddCard>
+          </Box>   
+          <Box>
             <button onClick={createDeck}>Create Deck</button>
-        </div>
+          </Box>   
+        </Box>
+
       );
 
 }

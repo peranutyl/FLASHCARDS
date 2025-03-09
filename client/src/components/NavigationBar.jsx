@@ -1,10 +1,11 @@
+import { Box } from '@mui/material'
 import {Link} from 'react-router-dom'
 const NavigationBar = ({}) => {
     return(
-        <div style={{display:"flex"}}>
+        <Box display="flex" flexDirection="column">
             <Link to="/">CreateCards</Link>
-            <Link to="/Revise">Revise</Link>
-        </div>
+            <Link to="/revise">Revise</Link>
+        </Box>
     )
 }
 
